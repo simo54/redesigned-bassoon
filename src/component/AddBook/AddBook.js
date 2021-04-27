@@ -1,12 +1,24 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addBook } from "../../store/actions/bookActions";
 
 export default function AddBook() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [rating, setRating] = useState(5);
 
+  const dispatch = useDispatch();
+
   const addBookHandler = (e) => {
     e.preventDefault();
+    dispatch(
+      addBook({
+        title,
+        author,
+        rating,
+        id: Math.random(),
+      })
+    );
   };
 
   return (
